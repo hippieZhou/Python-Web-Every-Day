@@ -3,18 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+from config import Config
 
 # import sys
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@127.0.0.1/flask_books'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'hippiezhou'
+app.config.from_object(Config)
 db = SQLAlchemy(app)
-
 
 class Author(db.Model):
     __tablename__ = 'authors'
