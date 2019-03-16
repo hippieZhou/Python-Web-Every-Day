@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<h1>Upload your Avatar Image</h1>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        {% import "bootstrap/wtf.html" as wtf %}
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
+{% endblock %}

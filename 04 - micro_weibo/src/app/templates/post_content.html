@@ -1,0 +1,43 @@
+{% for post in posts.items %}
+<div class="media">
+    <div class="media-left">
+        <a href="{{ url_for('user_page',username=post.author.username) }}">
+            <img class="media-object" src="{{ post.author.avatar_img }}" alt="avatar" width="64px">
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">{{ post.author.username }}</h4>
+        <small class="text-muted">{{ post.timestamp }}</small>
+        <p>{{ post.body }}</p>
+    </div>
+</div>
+{% endfor %}
+
+
+<nav aria-label="Page navigation">
+    <center>
+        <ul class="pagination">
+            <li class="{% if not posts.has_prev %} disabled {% endif %}">
+                <a href="{{ url_for('index',page=posts.prev_num) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;Prev</span>
+                </a>
+            </li>
+
+            {% for i in posts.iter_pages(right_current=3) %}
+            {% if i %}
+            <li class="{% if i == posts.page %}active {% endif %}">
+                <a href="{{ url_for('index',page=i) }}">{{ i }}</a>
+            </li>
+            {% else %}
+            <li class="disabled"> <a href="#">...</a></li>
+            {% endif %}
+            {% endfor %}
+
+            <li class="{% if not posts.has_next %} disabled {% endif %}">
+                <a href="{{ url_for('index',page=posts.next_num) }}" aria-label="Next">
+                    <span aria-hidden="true">Next&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </center>
+</nav>

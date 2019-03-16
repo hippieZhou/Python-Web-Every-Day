@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">Flask App</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="{% if request.endpoint =='index' %}active{% endif %}">
+          <a href="{{ url_for('index')}}">Home</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if not current_user.is_authenticated %}
+        <li class="{% if request.endpoint =='login' %}active{% endif %}">
+          <a href="{{ url_for('login')}}">Login</a>
+        </li>
+        <li class="{% if request.endpoint =='register' %}active{% endif %}">
+          <a href="{{ url_for('register')}}">Register</a>
+        </li>
+        {% else %}
+        <li class="{% if request.endpoint =='user_page' %}active{% endif %}">
+          <a href="{{ url_for('user_page',username=current_user.username)}}">UserInfo</a>
+        </li>
+        <li class="{% if request.endpoint =='logout' %}active{% endif %}">
+          <a href="{{ url_for('logout')}}">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
