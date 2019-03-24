@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+</head>
+
+<body>
+    <ul>
+        {% for user in users %}
+        <li>
+            <b>{{ user.username }}</b>: <p>{{user.email}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for post in posts %}
+        <li>
+            <b>{{ post.title }}</b>: <p>{{post.body}}</p> <br>
+            <p>{{post.category_id}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for category in categories %}
+        <li>
+            <b>{{ category.id }}</b>:<p>{{ category.name }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
