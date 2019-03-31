@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">愿望清单</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.endpoint == 'index' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('index') }}">首页<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated and user %}
+                <li class="nav-item {% if request.endpoint == 'logout' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('logout') }}">登出</a>
+                </li>
+                {% else %}
+                <li class="nav-item {% if request.endpoint == 'login' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('login') }}">登录</a>
+                </li>
+                <li class="nav-item {% if request.endpoint == 'register' %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('register') }}">注册</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

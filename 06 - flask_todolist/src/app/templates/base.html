@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% block styles %}
+    <!-- Bootstrap CSS -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}"> {{ bootstrap.load_css() }} {% endblock %}
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>愿望清单</title>
+    {% endif %} {% endblock %}
+</head>
+
+<body>
+
+    {% include "nav.html" %}
+
+    <div class="container">
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <!-- Your page contont -->
+        {% block content %}{% endblock%}
+    </div>
+
+    {% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }} {% endblock %}
+
+</body>
+
+</html>

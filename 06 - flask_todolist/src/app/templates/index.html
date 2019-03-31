@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {% block content %} {% if current_user.is_authenticated and user %}
+<h1 class="m-4">{{ current_user.name }},欢迎回来</h1>
+{% endif %}
+
+<div class="container-fluid">
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            添加新事务
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body mb-4">
+            {% from 'bootstrap/form.html' import render_form %} {{ render_form(form) }}
+        </div>
+    </div>
+
+    <ul class="list-group">
+        {% for thing in things.items %}
+        <li class="list-group-item">
+            <h4 style="display:block;float:left;padding-top:2px">
+                {{ thing.title }}
+            </h4>
+            <div style="display:block;float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{thing.id}}">查看</button>
+                <a class="btn btn-danger" href='/delete/{{ thing.id }}'>删除</a>
+            </div>
+        </li>
+
+        <div class="modal fade" id="exampleModalCenter{{thing.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{ thing.title }}</h5>
+                    </div>
+                    <div class="modal-body">
+                        {{ thing.text }}
+                    </div>
+                    <div class="modal-footer">
+                        <small>{{ thing.add_date }}</small>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+
+    <nav aria-label="Page navigation example" class="m-4">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {% if not things.has_prev %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('index',page=things.prev_num) }}">上一页</a>
+            </li>
+
+            {% for page in things.iter_pages(1,1,3,2) %} {% if page %}
+            <li class="page-item {%if page==things.page%}active{%endif%}">
+                <a class="page-link" href="{{ url_for('index',page=page) }}">{{page}}</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">&hellip;</a>
+            </li>
+            {% endif %} {% endfor %}
+
+            <li class="page-item {% if not things.has_next %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('index',page=things.next_num) }}">下一页</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+{% endblock %}
