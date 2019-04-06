@@ -6,3 +6,4 @@
 - [Micro_Weibo](https://www.youtube.com/watch?v=RWviEK1Si68&list=PLDFBYdF-BxV1G4FBpG1EMyFtbsbZuJOvD)
 - [Use-FLask-SQLAlchemy](Use-FLask-SQLAlchemy)
 - [Flask-TodoList](https://www.cnblogs.com/hippieZhou/p/10273258.html)
+- [Flask-tutorial](https://dormousehole.readthedocs.io/en/latest/tutorial/index.html)
