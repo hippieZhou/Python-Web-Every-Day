@@ -1,19 +1,13 @@
-"""
- Created by 七月 on 2018-2-1.
-"""
-from flask import jsonify, request, current_app, url_for, render_template, flash
+from . import web
+from flask import request, current_app, url_for, render_template, flash
+from flask_login import current_user
 from app.forms.book import SearchForm
-import json
-
 from app.libs.helper import is_isbn_or_key
 from app.spider.yushu_book import YuShuBook
 from app.viewmodels.book import BookViewModel, BookCollection
 from app.viewmodels.trade import TradeInfo
 from app.models.gift import Gift
 from app.models.wish import Wish
-from . import web
-
-__author__ = '七月'
 
 
 @web.route('/book/search')
@@ -41,7 +35,6 @@ def search():
         books.fill(yushu_book, q)
     else:
         flash('搜索的关键字不符合要求，请重新输入关键字')
-        # return jsonify(form.errors)
     return render_template('search_result.html', books=books)
 
 
@@ -74,33 +67,3 @@ def book_detail(isbn):
                            gifts=trade_gifts_model,
                            has_in_wishes=has_in_wishes,
                            has_in_gifts=has_in_gifts)
-
-
-@web.route('/test')
-def test():
-    r = {
-        'name': None,
-        'age': 18
-    }
-    # data['age']
-    r1 = {
-
-    }
-    flash('hello,qiyue', category='error')
-    flash('hello, jiuyue', category='warning')
-    # 模板 html
-    return render_template('test.html', data=r, data1=r1)
-
-
-@web.route('/test1')
-def test1():
-    print(id(current_app))
-    from flask import request
-    from app.libs.none_local import n
-    print(n.v)
-    n.v = 2
-    print('-----------------')
-    print(getattr(request, 'v', None))
-    setattr(request, 'v', 2)
-    print('-----------------')
-    return ''
