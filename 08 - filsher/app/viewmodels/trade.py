@@ -1,3 +1,6 @@
+from app.viewmodels.book import BookViewModel
+
+
 class TradeInfo(object):
     def __init__(self, goods):
         self.total = 0
