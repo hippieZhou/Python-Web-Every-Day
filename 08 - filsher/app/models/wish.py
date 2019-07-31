@@ -20,15 +20,13 @@ class Wish(Base):
     @classmethod
     def get_gift_counts(cls, isbn_list):
         from app.models.gift import Gift
-        count_list = db.session.query(func.count(Gift.id), Gift.isbn).filter(Gift.launched == False,
-                                                                             Gift.isbn.in_(
-                                                                                 isbn_list),
-                                                                             Gift.status == 1).group_by(Gift.isbn).all()
+        count_list = db.session.query(func.count(Gift.id), Gift.isbn).filter(
+            Gift.launched == False, Gift.isbn.in_(isbn_list), Gift.status == 1).group_by(Gift.isbn).all()
         count_list = [{'count': w[0], 'isbn':w[1]} for w in count_list]
         return count_list
 
     @property
     def book(self):
-        yushu_book = YushuBook()
+        yushu_book = YuShuBook()
         yushu_book.search_by_isbn(self.isbn)
         return yushu_book.first

@@ -23,11 +23,11 @@ def my_gifts():
 @web.route('/gifts/book/<isbn>')
 @login_required
 def save_to_gifts(isbn):
-    if current_user.can_save_to_list():
+    if current_user.can_save_to_list(isbn):
         with db.auto_commit():
             gift = Gift()
             gift.isbn = isbn
-            gitf.uid = current_user.id
+            gift.uid = current_user.id
             current_user.beans += current_app.config['BASE_UPLOAD_ONE_BOOK']
             db.session.add(gift)
     else:

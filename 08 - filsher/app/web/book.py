@@ -47,12 +47,10 @@ def book_detail(isbn):
     yushu_book.search_by_isbn(isbn)
     book = BookViewModel(yushu_book.first)
 
-    if current_app.is_authenticated:
-        if Gift.query.filter_by(
-                uid=current_app.id, isbn=isbn, launched=False).first():
+    if current_user.is_authenticated:
+        if Gift.query.filter_by(uid=current_user.id, isbn=isbn, launched=False).first():
             has_in_gifts = True
-        if Wish.query.filter_by(
-                uid=current_user.id, isbn=isbn, launched=False).first():
+        if Wish.query.filter_by(uid=current_user.id, isbn=isbn, launched=False).first():
             has_in_wishes = True
 
     trade_gifts = Gift.query.filter_by(isbn=isbn, launched=False).all()
@@ -63,7 +61,7 @@ def book_detail(isbn):
 
     return render_template('book_detail.html',
                            book=book,
-                           wished=trade_wishes_model,
+                           wishes=trade_wishes_model,
                            gifts=trade_gifts_model,
                            has_in_wishes=has_in_wishes,
                            has_in_gifts=has_in_gifts)
