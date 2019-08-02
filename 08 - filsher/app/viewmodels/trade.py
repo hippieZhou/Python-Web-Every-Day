@@ -1,3 +1,6 @@
+from app.viewmodels.book import BookViewModel
+
+
 class TradeInfo(object):
     def __init__(self, goods):
         self.total = 0
@@ -39,7 +42,7 @@ class MyTrades(object):
 
     def __matching(self, trade):
         count = 0
-        for trade_count in self.__trade_count_list:
+        for trade_count in self.__trades_count_list:
             if trade.isbn == trade_count['isbn']:
                 count = trade_count['count']
         r = {

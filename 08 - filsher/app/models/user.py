@@ -12,7 +12,6 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from app.libs.enums import PendingStatus
 from math import floor
 
-
 from flask import current_app
 
 
@@ -88,7 +87,7 @@ class User(Base, UserMixin):
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
             data = s.loads(token.encode('utf-8'))
-        except expression as e:
+        except Exception as e:
             return False
         uid = data.get('id')
         with db.auto_commit():

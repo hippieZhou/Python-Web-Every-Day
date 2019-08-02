@@ -37,7 +37,7 @@ def send_drift(gid):
 @web.route('/pending')
 @login_required
 def pending():
-    dirfts = Drift.query.filter(or_(Drift.requester_id == current_user.id,
+    drifts = Drift.query.filter(or_(Drift.requester_id == current_user.id,
                                     Drift.gifter_id == current_user.id)).order_by(desc(Drift.create_time)).all()
     views = DriftCollection(drifts, current_user.id)
     return render_template('pending.html', drifts=views.data)
@@ -50,7 +50,7 @@ def reject_drift(did):
         drift = Drift.query.filter(
             Gift.uid == current_user.id, Drift.id == did).first_or_404()
         drift.pending = PendingStatus.Reject
-        requester = User.query.get_or_404(dirft.requester_id)
+        requester = User.query.get_or_404(drift.requester_id)
         requester.beans += 1
     return redirect(url_for('web.pending'))
 

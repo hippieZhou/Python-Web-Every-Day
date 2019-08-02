@@ -24,7 +24,7 @@ def my_wish():
 def save_to_wish(isbn):
     if current_user.can_save_to_list(isbn):
         with db.auto_commit():
-            wish = wish()
+            wish = Wish()
             wish.uid = current_user.id
             wish.isbn = isbn
             db.session.add(wish)
@@ -44,7 +44,7 @@ def satisfy_wish(wid):
         send_mail(wish.user.email, '有人想送你一本书',
                   'email/satisify_wish.html', wish=wish, gift=gift)
         flash('已向他/她发送了一封邮件，如果他/她愿意接受你的赠送，你将收到一个鱼漂')
-    return redirect(url_for('web.book.detail', isbn=wish.isbn))
+    return redirect(url_for('web.book_detail', isbn=wish.isbn))
 
 
 @web.route('/wish/book/<isbn>/redraw')
