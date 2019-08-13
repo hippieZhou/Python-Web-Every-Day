@@ -35,7 +35,7 @@ class User(Base, UserMixin):
 
     @property
     def password(self):
-        self._password
+        return self._password
 
     @password.setter
     def password(self, raw):
