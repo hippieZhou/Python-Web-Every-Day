@@ -1,4 +1,4 @@
-# Flask-Every-Day
+# Python-Web-Every-Day
 
 - [Simple Books](https://www.bilibili.com/video/av19817183?from=search&seid=9189181850341238407)
 - [WatchList](https://read.helloflask.com/)
