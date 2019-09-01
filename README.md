@@ -9,3 +9,5 @@
 - [Flask-tutorial](https://dormousehole.readthedocs.io/en/latest/tutorial/index.html)
 - [filsher](https://coding.imooc.com/class/194.html)
 - [giner](https://coding.imooc.com/class/220.html)
+- [djangoer](https://docs.djangoproject.com/en/2.2/)
+- [Django 实战](https://github.com/qiwsir/DjangoPracticeProject)
