@@ -11,3 +11,4 @@
 - [giner](https://coding.imooc.com/class/220.html)
 - [djangoer](https://docs.djangoproject.com/en/2.2/)
 - [Django 实战](https://github.com/qiwsir/DjangoPracticeProject)
+- [Django Girl](https://tutorial.djangogirls.org/)
