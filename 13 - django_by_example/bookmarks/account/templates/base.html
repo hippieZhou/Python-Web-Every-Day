@@ -1,0 +1,74 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script>
+    let csrftoken = Cookies.get('csrftoken');
+
+    function csrfSafeMethon(method) {
+        // 如下的HTTP请求不需要设置CRSF信息
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethon(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+    $(document).ready(function () {
+        {% block domready %}
+        {% endblock %}
+    });
+</script>
+
+<body>
+    <div id="header">
+        <span class="logo">Bookmarks</span>
+        {% if request.user.is_authenticated %}
+        <ul class="menu">
+            <li {% if section == 'dashboard' %}class="selected" {% endif %}>
+                <a href="{% url 'dashboard' %}">My dashboard</a></li>
+            <li {% if section == 'images' %}class="selected" {% endif %}>
+                <a href="{% url "images:list" %}">Images</a>
+            </li>
+            <li {% if section == 'people' %}class="selected" {% endif %}>
+                <a href="{% url 'user_list' %}">People</a>
+            </li>
+        </ul>
+        {% endif %}
+
+        <span class="user">
+            {% if request.user.is_authenticated %}
+            Hello {{ request.user.first_name }},{{ request.user.username }},<a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Log-in</a> /
+            <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </span>
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message|safe }}<a href="#" class="close">X</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
