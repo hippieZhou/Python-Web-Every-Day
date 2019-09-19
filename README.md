@@ -12,3 +12,4 @@
 - [djangoer](https://docs.djangoproject.com/en/2.2/)
 - [Django 实战](https://github.com/qiwsir/DjangoPracticeProject)
 - [Django Girl](https://tutorial.djangogirls.org/)
+- [Django-2-by-Example](https://github.com/Django-By-Example-ZH/Django-2-by-Example)
