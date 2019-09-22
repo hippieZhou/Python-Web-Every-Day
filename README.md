@@ -16,4 +16,4 @@
 - [pollster_django_crash](https://github.com/bradtraversy/pollster_django_crash)
 - [Django 企业开发实战](https://github.com/the5fire/typeidea)
 
-> 上述所有实例都是我在平时学习 `Flask` 和 `Django` 相关书籍和示例的汇总，墙裂推荐 **Django-2-by-Example**，干货很多。
+> 上述所有示例都是我在平时学习 `Flask` 和 `Django` 相关书籍和示例的汇总，墙裂推荐 **Django-2-by-Example**，干货很多。
