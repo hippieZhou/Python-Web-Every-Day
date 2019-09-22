@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+verify_ssl = true
+
+[dev-packages]
+django-debug-toolbar = "*"
+djdt-flamegraph = "*"
+pympler = "*"
+django-debug-toolbar-line-profiler = "*"
+django-silk = "*"
+
+[packages]
+django = "*"
+mistune = "*"
+django-xadmin = "*"
+django-ckeditor = "*"
+django-rest-framework = "*"
+django-redis = "*"
+hiredis = "*"
+
+[requires]
+python_version = "3.6"
