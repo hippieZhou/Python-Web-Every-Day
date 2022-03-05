@@ -1,6 +1,6 @@
 autopep8==1.4.4
 awesome-slugify==1.6.5
-Django==2.2.13
+Django==2.2.27
 Markdown==3.1.1
 Pillow==6.2.0
 pycodestyle==2.5.0
